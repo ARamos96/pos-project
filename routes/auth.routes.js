@@ -105,3 +105,6 @@ router.post("/login", (res, res, next) => {
         .json({ message: "Internal Server Error", err: err.message })
     );
 });
+
+// Export router
+module.exports = router;
