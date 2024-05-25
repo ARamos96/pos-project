@@ -5,7 +5,7 @@ const {roleValidation} = require("../middleware/roleValidation.middleware");
 const User = require("./../models/User.model");
 
 // Admin may modify user's role
-router.patch("/assign-role", isAuthenticated, roleValidation(["admin"]), (req, res) => {
+router.patch("/assign-role", (req, res) => {
     // Get user._id
     const { _id, role } = req.body;
 

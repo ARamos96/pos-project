@@ -1,6 +1,7 @@
 const { expressjwt: jwt } = require("express-jwt");
 
 // Initialize JWT token validation middleware
+// isAuthenticated is in charge of extracting token, verifies it + decodes it and, attaches it to req.payload.
 const isAuthenticated = jwt({
   secret: process.env.TOKEN_SECRET,
   algorithms: ["HS256"],
@@ -11,8 +12,8 @@ const isAuthenticated = jwt({
 // Extract JWT token from headers
 function getTokenFromHeaders(req) {
   // Check if token is available on the request headers
-  if (req.headers.authorization && req.headers.authorization.split("")[0] === "Bearer ") {
-    
+  console.log(req.headers.authorization)
+  if (req.headers.authorization && req.headers.authorization.split(" ")[0] === "Bearer") {
     // Get the encoded token string and return it
     const token = req.headers.authorization.split(" ")[1];
     return token;
