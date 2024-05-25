@@ -14,6 +14,8 @@ const app = express();
 // Import authentication middleware
 const { isAuthenticated } = require("./middleware/jwt.middleware")
 
+// Import role validation middleware
+
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 
@@ -23,6 +25,9 @@ app.use("/api", indexRoutes);
 
 const authRouter = require("./routes/auth.routes");
 app.use("/auth", authRouter);
+
+const adminRouter = require("./routes/admin.routes")
+app.use("/admin", adminRouter);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
